@@ -14,5 +14,9 @@
         Route="LoadScreen" />
 
 
+    <ShellContent Route="AppShellRoute" ContentTemplate="{DataTemplate local:AppShellContent}" />
+
+
+
 
 </Shell>

@@ -11,7 +11,7 @@ namespace MauiTestApp.ViewModels
 {
     public partial class WelcomeVM
     {
-        
+        LoginDatabase db = new LoginDatabase();
         LoginResponse auth;
         
         [RelayCommand]

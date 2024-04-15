@@ -11,82 +11,58 @@ namespace MauiTestApp.Data
 {
     public class LoginDatabase
     {
-        public static SQLiteAsyncConnection Database;
-        public LoginDatabase() { }
-        public static void InitializeDatabase()
+        SQLiteAsyncConnection Database;
+        public LoginDatabase()
         {
-            try
-            {
-                if (Database is not null)
-                    return;
-
-                Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-                var result = Database.CreateTableAsync<SessionUser>();
-            }
-            catch (Exception ex)
-            {
-
+        }
+        async Task Init()
+        {
+            if (Database is not null)
                 return;
-            }
 
+            Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+            var result = await Database.CreateTableAsync<SessionUser>();
         }
 
-        public async Task<SessionUser> GetItemAsync()
+        public async Task<List<SessionUser>> GetItemsAsync()
         {
-            InitializeDatabase();
-            return await Database.Table<SessionUser>().FirstOrDefaultAsync();
+            await Init();
+            return await Database.Table<SessionUser>().ToListAsync();
         }
-        public async Task<int> SaveItemAsync(LoginResponse item)
+
+        //public async Task<List<SessionUser>> GetItemsNotDoneAsync()
+        //{
+        //    await Init();
+        //    return await Database.Table<SessionUser>().Where(t => t.Done).ToListAsync();
+
+        //    // SQL queries are also possible
+        //    //return await Database.QueryAsync<SessionUser>("SELECT * FROM [SessionUser] WHERE [Done] = 0");
+        //}
+
+        public async Task<SessionUser> GetItemAsync(int id)
         {
-            InitializeDatabase();
-            SessionUser obj = new SessionUser();
-            obj.userId = item.result.userId;
-            obj.email = item.result.email;
-            if (item.success)
+            await Init();
+            return await Database.Table<SessionUser>().Where(i => i.userId == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<int> SaveItemAsync(SessionUser item)
+        {
+            await Init();
+            if (item.userId != 0)
             {
-                return await Database.UpdateAsync(obj);
+                return await Database.UpdateAsync(item);
             }
             else
             {
-                return await Database.InsertAsync(obj);
+                return await Database.InsertAsync(item);
             }
-
-            //public static int SaveUser(SessionUser model)
-            //{
-            //    Database.DeleteAllAsync<SessionUser>();
-            //    return await Database.Insert(model);
-            //}
-
-            //public static SessionUser GetUser()
-            //{
-            //    return Database.Table<SessionUser>().FirstOrDefault();
-            //}
-            //async Task Init()
-            //{
-            //    if (Database is not null)
-            //        return;
-
-            //    Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-            //    var result = await Database.CreateTableAsync<SessionUser>();
-            //
-            //}
         }
-        public async Task<int> DeleteAllItemsAsync()
+
+        public async Task<int> DeleteItemAsync(SessionUser item)
         {
-            InitializeDatabase();
-
-            try
-            {
-                return await Database.DeleteAllAsync<SessionUser>();
-            }
-            catch (Exception ex)
-            {
-                // Handle exception appropriately
-                Console.WriteLine($"Error deleting all items: {ex.Message}");
-                return -1; // Return -1 to indicate failure
-            }
+            await Init();
+            return await Database.DeleteAsync(item);
         }
-
     }
 }
 
