@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiTestApp.OTP"
+             Title="OTP">
+    <VerticalStackLayout>
+        <Label Text="If not received, press button bellow to send OTP again" Margin="25,0,25,0"  HorizontalTextAlignment="Center"></Label>
+        <Button Text="SEND SMS" Margin="5"></Button>
+        <Button Text="SEND Email" Margin="5,5,5,100"></Button>
+
+        <Label Text="Enter OTP" FontSize="Large" Margin="25,0,25,25"  HorizontalTextAlignment="Center"></Label>
+        <HorizontalStackLayout BackgroundColor="White" HorizontalOptions="Center">
+            <Entry MaxLength="1"  x:Name="Pin1" BackgroundColor="White" TextColor="Black"/>
+            <Entry MaxLength="1"  x:Name="Pin2" BackgroundColor="blue" TextColor="Black"/>
+            <Entry MaxLength="1"  x:Name="Pin3" BackgroundColor="White" TextColor="Black"/>
+            <Entry MaxLength="1"  x:Name="Pin4" BackgroundColor="blue" TextColor="Black"/>
+            <Entry MaxLength="1"  x:Name="Pin5" BackgroundColor="White" TextColor="Black"/>
+            <Entry MaxLength="1"  x:Name="Pin6" BackgroundColor="blue" TextColor="Black"/>
+        </HorizontalStackLayout>
+        <Button Text="Verify" Margin="5,50,5,0" Command="{Binding VerifyOtpAsyncCommand}"></Button>
+
+    </VerticalStackLayout>
+
+</ContentPage>
