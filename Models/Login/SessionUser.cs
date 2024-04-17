@@ -8,7 +8,7 @@ namespace MauiTestApp.Models.Login
 {
     public class SessionUser
     {
-        public string email;
+        public string email { get; set; }
         public int userId { get; set; }
         
     }

@@ -50,11 +50,17 @@
 
 	<ItemGroup>
 	  <AndroidResource Remove="Models\NewFolder1\**" />
+	  <AndroidResource Remove="NewFolder1\**" />
 	  <Compile Remove="Models\NewFolder1\**" />
+	  <Compile Remove="NewFolder1\**" />
 	  <EmbeddedResource Remove="Models\NewFolder1\**" />
+	  <EmbeddedResource Remove="NewFolder1\**" />
 	  <MauiCss Remove="Models\NewFolder1\**" />
+	  <MauiCss Remove="NewFolder1\**" />
 	  <MauiXaml Remove="Models\NewFolder1\**" />
+	  <MauiXaml Remove="NewFolder1\**" />
 	  <None Remove="Models\NewFolder1\**" />
+	  <None Remove="NewFolder1\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -76,6 +82,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="OTP.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\OTP.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="WelcomeScreen.xaml">

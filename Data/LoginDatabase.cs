@@ -11,7 +11,7 @@ namespace MauiTestApp.Data
 {
     public class LoginDatabase
     {
-        SQLiteAsyncConnection Database;
+        SQLiteConnection Database;
         public LoginDatabase()
         {
         }
@@ -20,29 +20,21 @@ namespace MauiTestApp.Data
             if (Database is not null)
                 return;
 
-            Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-            var result = await Database.CreateTableAsync<SessionUser>();
+            Database = new SQLiteConnection(Constants.DatabasePath, Constants.Flags);
+            var result = Database.CreateTable<SessionUser>();
         }
 
         public async Task<List<SessionUser>> GetItemsAsync()
         {
             await Init();
-            return await Database.Table<SessionUser>().ToListAsync();
+            return Database.Table<SessionUser>().ToList();
         }
 
-        //public async Task<List<SessionUser>> GetItemsNotDoneAsync()
-        //{
-        //    await Init();
-        //    return await Database.Table<SessionUser>().Where(t => t.Done).ToListAsync();
-
-        //    // SQL queries are also possible
-        //    //return await Database.QueryAsync<SessionUser>("SELECT * FROM [SessionUser] WHERE [Done] = 0");
-        //}
 
         public async Task<SessionUser> GetItemAsync(int id)
         {
             await Init();
-            return await Database.Table<SessionUser>().Where(i => i.userId == id).FirstOrDefaultAsync();
+            return Database.Table<SessionUser>().Where(i => i.userId == id).FirstOrDefault();
         }
 
         public async Task<int> SaveItemAsync(SessionUser item)
@@ -50,18 +42,18 @@ namespace MauiTestApp.Data
             await Init();
             if (item.userId != 0)
             {
-                return await Database.UpdateAsync(item);
+                return Database.Update(item);    
             }
             else
             {
-                return await Database.InsertAsync(item);
+                return Database.Insert(item);
             }
         }
 
-        public async Task<int> DeleteItemAsync(SessionUser item)
+        public async Task<int> DeleteItemAsync()
         {
             await Init();
-            return await Database.DeleteAsync(item);
+            return Database.DeleteAll<SessionUser>();
         }
     }
 }

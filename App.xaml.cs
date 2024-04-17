@@ -7,7 +7,6 @@ namespace MauiTestApp
         public App()
         {
             InitializeComponent();
-            LoginDatabase db = new LoginDatabase();
             
             MainPage = new AppShell();
         }

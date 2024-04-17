@@ -9,6 +9,7 @@ namespace MauiTestApp.Services.Interface
     {
         Task<LoginResponse> LoginUser(LoginRequest authenticationInput);
         Task<OTPAccessTokenCreateResponse> OTPCreateAccToken(OTPAccessTokenCreateRequest authenticationInput);
+        Task<ChangeVerificationMethodResponse> ChangeVerificationMethod(ChangeVerificationMethodRequest authenticationInput);
         Task<VerifySmsAndMailOTPResponse> VerifySmsAndMailOTP(VerifySmsAndMailOTPRequest authenticationInput);
     }
 }

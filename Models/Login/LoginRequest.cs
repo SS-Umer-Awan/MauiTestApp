@@ -13,6 +13,6 @@ namespace MauiTestApp.Models
         //public int ID { get;set; }
         public string userNameOrEmailAddress { get; set; }
         public string password { get; set; }
-        public bool rememberClient { get; set; }
+        public bool rememberClient { get; set; } = true;
     }
 }

@@ -6,18 +6,7 @@ using System.Threading.Tasks;
 
 namespace MauiTestApp.Models.Login
 {
-    public class LoginResponse
-    {
-
-        public Result result { get; set; }
-        public string targetUrl { get; set; }
-        public bool success { get; set; }
-        public string error { get; set; }
-        public bool unAuthorizedRequest { get; set; }
-        public bool __abp { get; set; }
-    }
-
-    public class Result
+    public class LoginResponseResult
     {
         public int statusCode { get; set; }
         public string message { get; set; }
@@ -25,6 +14,4 @@ namespace MauiTestApp.Models.Login
         public string secretkey { get; set; }
         public string email { get; set; }
     }
-    
 }
-

@@ -1,5 +1,6 @@
 ﻿using MauiTestApp.Data;
 
+
 namespace MauiTestApp
 {
     public partial class AppShell : Shell

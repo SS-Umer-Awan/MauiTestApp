@@ -1,3 +1,4 @@
+using MauiTestApp.Data;
 using MauiTestApp.Models;
 using MauiTestApp.Services.Implementation;
 using MauiTestApp.Services.Interface;
@@ -7,11 +8,12 @@ namespace MauiTestApp;
 
 public partial class Login : ContentPage
 {
-    LoginService login;
-    public Login()
+    LoginViewModel viewModel;
+    public Login(LoginViewModel vm)
     {
         InitializeComponent();
-        BindingContext = new LoginViewModel(login);
+        this.viewModel = vm;
+        BindingContext = vm;
     }
 
 

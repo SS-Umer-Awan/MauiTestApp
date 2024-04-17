@@ -17,13 +17,12 @@
             Placeholder="Enter Username"  Text="{Binding UserName}"/>
 
             <Entry x:Name="Password"
-               Placeholder="Enter Password"
-               VerticalOptions="CenterAndExpand"  Text="{Binding Password}"
-               />
+               Placeholder="Enter Password" 
+                   Text="{Binding Password}"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal" >
-            <CheckBox HorizontalOptions="Center" VerticalOptions="Center" x:Name="CheckBox"  IsEnabled="{Binding cb}"/>
+            <CheckBox HorizontalOptions="Center" VerticalOptions="Center" x:Name="CheckBox"   IsChecked="{Binding cb}"/>
             <Label Text="Always Remember" HorizontalOptions="Center" VerticalOptions="Center"></Label>
         </StackLayout>
 

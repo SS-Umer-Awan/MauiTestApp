@@ -9,12 +9,12 @@
 
     
     <ShellContent
-        Title="Loading"
+        Title="LOAD"
         ContentTemplate="{DataTemplate local:LoadScreen}"
-        Route="LoadScreen" />
+        Route="LOAD" />
 
-
-    <ShellContent Route="AppShellRoute" ContentTemplate="{DataTemplate local:AppShellContent}" />
+    <!--<ShellContent ContentTemplate="{DataTemplate local:Login}" Route="Login" />-->
+    <!--<ShellContent Route="AppShellRoute" ContentTemplate="{DataTemplate local:AppShellContent}" />-->
 
 
 

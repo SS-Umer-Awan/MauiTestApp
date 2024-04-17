@@ -1,22 +1,18 @@
 using MauiTestApp.ViewModels;
 using System.Text;
 
-namespace MauiTestApp;
+namespace MauiTestApp.Views;
 
 public partial class OTP : ContentPage
 {
-
     OTPViewModel viewModel;
     private Entry[] _entries;
     private int _currentIndex;
-
-
     public OTP(OTPViewModel vm)
-    {
+	{
         InitializeComponent();
         this.viewModel = vm;
         BindingContext = vm;
-
         _entries = new Entry[] { Entry1, Entry2, Entry3, Entry4, Entry5, Entry6 };
 
         foreach (var entry in _entries)
@@ -63,9 +59,8 @@ public partial class OTP : ContentPage
                 otpBuilder.Append(entry.Text);
             }
             string otp = otpBuilder.ToString();
-            viewModel.otp = otp;
+
         }
 
     }
-
 }

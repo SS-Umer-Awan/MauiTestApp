@@ -9,10 +9,12 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <Button
-            Text="LOGOUT"
-            BackgroundColor="White"
-            Command="{Binding LogoutCommand}"
-            ></Button>
+        <Button 
+            Text="Logout"
+            FontSize="Large"
+            HorizontalOptions="Fill"  
+            Command="{Binding LogoutCommand}"/>
+
+        
     </VerticalStackLayout>
 </ContentPage>

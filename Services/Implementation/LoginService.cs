@@ -68,5 +68,19 @@ namespace MauiTestApp.Services.Implementation
             }
             return response;
         }
+        public async Task<ChangeVerificationMethodResponse> ChangeVerificationMethod(ChangeVerificationMethodRequest authenticationInput)
+        {
+            ChangeVerificationMethodResponse response = null;
+            var url = GlobalSetting.DefaultEndpoint + "api/TokenAuth/ChangeVerificationMethod";
+            try
+            {
+                response = await _requestProvider.PostAsync<ChangeVerificationMethodResponse>(url, new StringContent(JsonConvert.SerializeObject(authenticationInput)));
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine($"Error logging in: {ex.Message}");
+            }
+            return response;
+        }
     }
 }

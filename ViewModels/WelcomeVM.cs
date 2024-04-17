@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MauiTestApp.Data;
+using MauiTestApp.Database;
+using MauiTestApp.Models;
 using MauiTestApp.Models.Login;
 using System;
 using System.Collections.Generic;
@@ -11,32 +13,28 @@ namespace MauiTestApp.ViewModels
 {
     public partial class WelcomeVM
     {
-        LoginDatabase db = new LoginDatabase();
-        LoginResponse auth;
+        VerifiedUser SessionUser;
+        public WelcomeVM() 
+        {
+            SessionUser = SQLiteDbManager.GetVerifiedUser();
+            if (SessionUser==null)
+            {
+                Shell.Current.GoToAsync("LoadScreen");
+
+            }
+        }
+
         
         [RelayCommand]
         public async Task Logout()
         {
             try
             {
-                var objectOfDB=db.DeleteAllItemsAsync();
-                if (objectOfDB != null)
-                {
-                    await Shell.Current.GoToAsync("WelcomeScreen");
-                }
-                else
-                {
-                    await Shell.Current.GoToAsync("Login");
-                }
+                SQLiteDbManager.RemoveEverythingFromDB();
+                await Shell.Current.GoToAsync("LoadScreen");
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error logging in: {ex.Message}");
-            }
-            finally
-            {
+            catch { }
 
-            }
         }
     }
 }
